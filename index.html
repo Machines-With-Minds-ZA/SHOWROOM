@@ -5,15 +5,742 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Hub</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: darkgoldenrod;
+            --secondary-color: #604800;
+            --accent-color: #FFD966;
+            --text-color: #333;
+            --light-text: #fff;
+            --background-light: #fff;
+            --background-dark: #f8f4e8;
+            --border-color: #e0e0e0;
+            --shadow-color: rgba(0,0,0,0.2);
+            --glow-color: rgba(184, 134, 11, 0.6);
+            --transition-speed: 0.3s;
+            --card-bg: linear-gradient(145deg, #fff, #f8f4e8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            transition: all 0.4s ease;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .logo::after {
+            content: '.';
+            color: var(--primary-color);
+            font-size: 40px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--light-text);
+            font-size: 16px;
+            font-weight: 500;
+            transition: all var(--transition-speed);
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after, 
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover, 
+        nav ul li a.active {
+            color: var(--primary-color);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--light-text);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(184, 134, 11, 0.4);
+        }
+
+        /* Hero section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=2850&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: var(--light-text);
+            text-align: left;
+            padding-left: 50px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 20px 0;
+            line-height: 1.2;
+            background: linear-gradient(to right, #ffffff, #ffd966);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            color: #e0e0e0;
+        }
+
+        .video-btn {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 12px 25px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.2);
+        }
+
+        .video-btn i {
+            margin-right: 10px;
+        }
+
+        .video-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(184, 134, 11, 0.4);
+        }
+
+        /* Projects section */
+        .projects {
+            padding: 100px 0;
+            background-color: var(--background-light);
+            position: relative;
+        }
+
+        .projects::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,217,102,0.05) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 15px auto 40px;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: #666;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(255, 217, 102, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            background: radial-gradient(circle at center, var(--glow-color) 0%, rgba(255,255,255,0) 70%);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(184, 134, 11, 0.25);
+            border-color: var(--primary-color);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-icon {
+            width: 90px;
+            height: 90px;
+            background-color: rgba(184, 134, 11, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 35px;
+            color: var(--primary-color);
+            position: relative;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 20px rgba(184, 134, 11, 0.15);
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.2) rotate(5deg);
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 10px 25px rgba(184, 134, 11, 0.4);
+        }
+
+        .project-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(184, 134, 11, 0.2);
+            z-index: -1;
+            animation: pulse 2s infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-icon::after {
+            opacity: 1;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .project-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 10px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            box-shadow: 0 5px 15px rgba(184, 134, 11, 0.25);
+            border: 2px solid transparent;
+        }
+
+        .read-more:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(184, 134, 11, 0.3);
+        }
+
+        /* Features section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--background-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(184, 134, 11, 0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: 1;
+        }
+
+        .features::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(184, 134, 11, 0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: 1;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card {
+            background-color: var(--background-light);
+            padding: 35px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px var(--shadow-color);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 217, 102, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(184, 134, 11, 0.2);
+            border-color: rgba(184, 134, 11, 0.5);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(184, 134, 11, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            background-color: rgba(184, 134, 11, 0.2);
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .feature-icon img {
+            max-width: 50%;
+            max-height: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon img {
+            filter: brightness(0.8) saturate(1.5);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: var(--light-text);
+            padding: 70px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            opacity: 0.7;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--light-text);
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .footer-logo::after {
+            content: '.';
+            color: var(--primary-color);
+            font-size: 40px;
+        }
+
+        .footer-contact h4, .footer-links h4 {
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-contact p {
+            margin-bottom: 15px;
+            color: #aaa;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact p i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .footer-contact p:hover {
+            color: var(--light-text);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .footer-links ul li a::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            opacity: 0.7;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 20px;
+        }
+
+        .footer-links ul li a:hover::before {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            color: var(--light-text);
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(184, 134, 11, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px var(--glow-color);
+            }
+            50% {
+                box-shadow: 0 0 20px var(--glow-color), 0 0 30px var(--glow-color);
+            }
+            100% {
+                box-shadow: 0 0 5px var(--glow-color);
+            }
+        }
+
+        .project-card:hover {
+            animation: glow 2s infinite;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 992px) {
+            header {
+                padding: 20px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                padding-left: 20px;
+                padding-right: 20px;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .project-grid, .feature-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--light-text);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        @media screen and (max-width: 992px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav.active ul {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 250px;
+                height: 100vh;
+                background-color: rgba(34, 34, 34, 0.95);
+                padding: 80px 30px 30px;
+                align-items: flex-start;
+                box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+                animation: slideIn 0.3s forwards;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            nav ul li a {
+                font-size: 18px;
+            }
+
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                }
+                to {
+                    transform: translateX(0);
+                }
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="logo">SQUARE.</div>
+        <a href="#" class="logo">SQUARE</a>
         <nav>
             <ul>
                 <li><a href="#" class="active">Home</a></li>
@@ -24,6 +751,7 @@
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
         </nav>
         <a href="#contact" class="cta-button">Request a quote</a>
     </header>
@@ -31,22 +759,24 @@
     <section class="hero">
         <div class="hero-content">
             <button class="video-btn"><i class="fa-solid fa-play"></i> WATCH VIDEO</button>
-            <h1>We have a passion in creating<br>new and unique spaces</h1>
-            <p>Access all your web projects in one central hub, elegantly designed for professionals</p>
+            <h1>Welcome to your Project Collection</h1>
+            <p>Your central hub for accessing all your web projects in one elegant, professionally designed space.</p>
+            <a href="#projects" class="cta-button">Explore My Work <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
         </div>
     </section>
 
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">My Projects</h2>
+            <p class="section-subtitle">Explore my collection of interactive web applications, each designed with a unique purpose and expert implementation.</p>
             <div class="project-grid">
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fa-solid fa-code"></i>
+                        <i class="fa-solid fa-robot"></i>
                     </div>
                     <h3>AI Dad</h3>
-                    <p>An intelligent virtual assistant designed to provide fatherly advice and support in everyday scenarios.</p>
-                    <a href="#" class="read-more">Visit Site</a>
+                    <p>An intelligent virtual assistant designed to provide fatherly advice and support in everyday scenarios, offering guidance just when you need it most.</p>
+                    <a href="#" class="read-more">Visit Site <i class="fas fa-external-link-alt" style="margin-left: 5px; font-size: 0.9em;"></i></a>
                 </div>
                 
                 <div class="project-card">
@@ -54,8 +784,8 @@
                         <i class="fa-solid fa-gavel"></i>
                     </div>
                     <h3>VR Courtroom</h3>
-                    <p>A virtual reality environment simulating courtroom proceedings for legal education and training.</p>
-                    <a href="#" class="read-more">Visit Site</a>
+                    <p>A virtual reality environment meticulously simulating courtroom proceedings for state-of-the-art legal education and professional training.</p>
+                    <a href="#" class="read-more">Visit Site <i class="fas fa-external-link-alt" style="margin-left: 5px; font-size: 0.9em;"></i></a>
                 </div>
                 
                 <div class="project-card">
@@ -63,17 +793,17 @@
                         <i class="fa-solid fa-globe"></i>
                     </div>
                     <h3>ECOWAS</h3>
-                    <p>Information portal for the Economic Community of West African States highlighting initiatives and developments.</p>
-                    <a href="#" class="read-more">Visit Site</a>
+                    <p>Comprehensive information portal for the Economic Community of West African States highlighting regional initiatives, policies, and developments.</p>
+                    <a href="#" class="read-more">Visit Site <i class="fas fa-external-link-alt" style="margin-left: 5px; font-size: 0.9em;"></i></a>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-user-tie"></i>
                     </div>
                     <h3>Career Advisor</h3>
-                    <p>Professional guidance platform offering career development resources and personalized advice.</p>
-                    <a href="#" class="read-more">Visit Site</a>
+                    <p>Sophisticated professional guidance platform offering personalized career development resources, job matching, and expert advice for career advancement.</p>
+                    <a href="#" class="read-more">Visit Site <i class="fas fa-external-link-alt" style="margin-left: 5px; font-size: 0.9em;"></i></a>
                 </div>
                 
                 <div class="project-card">
@@ -81,17 +811,17 @@
                         <i class="fa-solid fa-star"></i>
                     </div>
                     <h3>Portfolio Showcase</h3>
-                    <p>A curated collection of professional work samples and creative projects demonstrating range of skills.</p>
-                    <a href="#" class="read-more">Visit Site</a>
+                    <p>A curated collection of professional work samples and creative projects beautifully presented to demonstrate the breadth and depth of skills and expertise.</p>
+                    <a href="#" class="read-more">Visit Site <i class="fas fa-external-link-alt" style="margin-left: 5px; font-size: 0.9em;"></i></a>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-icon">
-                        <i class="fa-solid fa-circle-dot"></i>
+                        <i class="fa-solid fa-database"></i>
                     </div>
                     <h3>Digital Archive</h3>
-                    <p>Comprehensive digital storage solution for important documents and media with secure access features.</p>
-                    <a href="#" class="read-more">Visit Site</a>
+                    <p>Comprehensive digital storage solution with advanced search capabilities for securely organizing important documents and media with controlled access.</p>
+                    <a href="#" class="read-more">Visit Site <i class="fas fa-external-link-alt" style="margin-left: 5px; font-size: 0.9em;"></i></a>
                 </div>
             </div>
         </div>
@@ -99,31 +829,33 @@
 
     <section id="about" class="features">
         <div class="container">
+            <h2 class="section-title">Our Approach</h2>
+            <p class="section-subtitle">We combine design excellence, strategic planning, and flawless execution to deliver outstanding projects.</p>
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <img src="https://img.icons8.com/ios/50/4CAF50/design--v1.png" alt="Design Icon">
+                        <img src="https://img.icons8.com/ios/50/b8860b/design--v1.png" alt="Design Icon">
                     </div>
-                    <h3>PERFECTLY DESIGN</h3>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                    <h3>PERFECTLY DESIGNED</h3>
+                    <p>Our meticulous attention to design ensures every project is visually stunning and functionally superior, creating memorable user experiences that stand the test of time.</p>
                     <a href="#" class="read-more">Read more</a>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <img src="https://img.icons8.com/ios/50/4CAF50/compass--v1.png" alt="Planning Icon">
+                        <img src="https://img.icons8.com/ios/50/b8860b/compass--v1.png" alt="Planning Icon">
                     </div>
                     <h3>CAREFULLY PLANNED</h3>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                    <p>Strategic planning is at the heart of our process, allowing us to anticipate challenges, optimize resources, and ensure your project flows smoothly from concept to completion.</p>
                     <a href="#" class="read-more">Read more</a>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <img src="https://img.icons8.com/ios/50/4CAF50/checked--v1.png" alt="Execute Icon">
+                        <img src="https://img.icons8.com/ios/50/b8860b/checked--v1.png" alt="Execute Icon">
                     </div>
-                    <h3>SMARTLY EXECUTE</h3>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                    <h3>EXPERTLY EXECUTED</h3>
+                    <p>Our team of specialists brings unparalleled expertise to every project phase, implementing advanced solutions with precision and attention to detail for flawless results.</p>
                     <a href="#" class="read-more">Read more</a>
                 </div>
             </div>
@@ -133,11 +865,21 @@
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">SQUARE.</div>
+                <div>
+                    <div class="footer-logo">SQUARE</div>
+                    <p>Your partner in creating exceptional digital experiences and innovative solutions that drive growth and engagement.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
                 <div class="footer-contact">
                     <h4>Contact Us</h4>
-                    <p>Email: info@square.com</p>
-                    <p>Phone: +1 (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@square.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Innovation Street, Tech City</p>
                 </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
@@ -155,6 +897,123 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add scroll event listener for header
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.background = 'rgba(51, 51, 51, 0.95)';
+                    header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                    
+                    // Change navigation text color
+                    const navLinks = document.querySelectorAll('nav ul li a');
+                    navLinks.forEach(link => {
+                        link.style.color = '#fff';
+                    });
+                    
+                    // Change logo color
+                    const logo = document.querySelector('.logo');
+                    logo.style.color = '#fff';
+                } else {
+                    header.style.background = 'transparent';
+                    header.style.boxShadow = 'none';
+                    
+                    // Reset navigation text color
+                    const navLinks = document.querySelectorAll('nav ul li a');
+                    navLinks.forEach(link => {
+                        link.style.color = '#fff';
+                    });
+                    
+                    // Reset logo color
+                    const logo = document.querySelector('.logo');
+                    logo.style.color = '#fff';
+                }
+            });
+            
+            // Add enhanced glow effect to project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    // Create glow effect for the icon
+                    const icon = this.querySelector('.project-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.2) rotate(5deg)';
+                        icon.style.transition = 'transform 0.5s ease';
+                        icon.style.color = 'white';
+                        icon.style.backgroundColor = 'darkgoldenrod';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    // Reset icon
+                    const icon = this.querySelector('.project-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1)';
+                        icon.style.backgroundColor = 'rgba(184, 134, 11, 0.1)';
+                        icon.style.color = 'darkgoldenrod';
+                    }
+                });
+            });
+            
+            // Video button click effect
+            const videoBtn = document.querySelector('.video-btn');
+            if (videoBtn) {
+                videoBtn.addEventListener('click', function() {
+                    alert('Video player would open here in production');
+                });
+            }
+            
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const nav = document.querySelector('nav');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                    
+                    // Change icon based on state
+                    const icon = this.querySelector('i');
+                    if (nav.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !mobileToggle.contains(e.target) && nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        const icon = mobileToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
