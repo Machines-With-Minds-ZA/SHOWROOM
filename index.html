@@ -1076,18 +1076,17 @@ Apps GritLab Africa   </div>
                 videoPlaceholder.style.borderRadius = '8px';
                 videoPlaceholder.style.overflow = 'hidden';
                 
-                // Create video element
-                const videoContent = document.createElement('video');
+                // Create iframe for YouTube video
+                const videoContent = document.createElement('iframe');
                 videoContent.style.position = 'absolute';
                 videoContent.style.top = '0';
                 videoContent.style.left = '0';
                 videoContent.style.width = '100%';
                 videoContent.style.height = '100%';
                 videoContent.style.backgroundColor = '#111';
-                videoContent.controls = true;
-                videoContent.autoplay = true; // Auto-play when opened
-                videoContent.src = 'assets/Videos/videoplayback.mp4';
-                videoContent.type = 'video/mp4';
+                videoContent.src = 'https://www.youtube.com/embed/mzTZ7lX4yVo?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0';
+                videoContent.setAttribute('allow', 'autoplay; encrypted-media');
+                videoContent.setAttribute('allowfullscreen', '');
                 
                 videoPlaceholder.appendChild(videoContent);
                 videoContainer.appendChild(videoPlaceholder);
@@ -1108,7 +1107,7 @@ Apps GritLab Africa   </div>
                 });
                 
                 function closeModal() {
-                    videoContent.pause(); // Stop video playback
+                    videoContent.src = ''; // Stop video by clearing src
                     backdrop.style.opacity = '0';
                     videoContainer.style.transform = 'scale(0.9)';
                     setTimeout(() => {
