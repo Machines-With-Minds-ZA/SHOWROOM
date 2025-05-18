@@ -961,205 +961,206 @@
         </div>
     </footer>
 
-    <script>
-        // Wait for the DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add scroll event listener for header
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('header');
-                if (window.scrollY > 50) {
-                    header.style.background = 'rgba(28, 28, 28, 0.95)';
-                    header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
-                    
-                    // Change navigation text color
-                    const navLinks = document.querySelectorAll('nav ul li a');
-                    navLinks.forEach(link => {
-                        link.style.color = '#fff';
-                    });
-                    
-                    // Change logo color
-                    const logo = document.querySelector('.logo');
-                    logo.style.color = '#fff';
-                } else {
-                    header.style.background = 'transparent';
-                    header.style.boxShadow = 'none';
-                    
-                    // Reset navigation text color
-                    const navLinks = document.querySelectorAll('nav ul li a');
-                    navLinks.forEach(link => {
-                        link.style.color = '#fff';
-                    });
-                    
-                    // Reset logo color
-                    const logo = document.querySelector('.logo');
-                    logo.style.color = '#fff';
+<script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add scroll event listener for header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(28, 28, 28, 0.95)';
+                header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                
+                // Change navigation text color
+                const navLinks = document.querySelectorAll('nav ul li a');
+                navLinks.forEach(link => {
+                    link.style.color = '#fff';
+                });
+                
+                // Change logo color
+                const logo = document.querySelector('.logo');
+                logo.style.color = '#fff';
+            } else {
+                header.style.background = 'transparent';
+                header.style.boxShadow = 'none';
+                
+                // Reset navigation text color
+                const navLinks = document.querySelectorAll('nav ul li a');
+                navLinks.forEach(link => {
+                    link.style.color = '#fff';
+                });
+                
+                // Reset logo color
+                const logo = document.querySelector('.logo');
+                logo.style.color = '#fff';
+            }
+        });
+        
+        // Add enhanced glow effect to project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                // Create glow effect for the icon
+                const icon = this.querySelector('.project-icon');
+                if (icon) {
+                    icon.style.transform = 'scale(1.15)';
+                    icon.style.transition = 'transform 0.4s ease';
+                    icon.style.color = 'white';
+                    icon.style.backgroundColor = 'darkgoldenrod';
                 }
             });
             
-            // Add enhanced glow effect to project cards
-            const projectCards = document.querySelectorAll('.project-card');
-            
-            projectCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    // Create glow effect for the icon
-                    const icon = this.querySelector('.project-icon');
-                    if (icon) {
-                        icon.style.transform = 'scale(1.15)';
-                        icon.style.transition = 'transform 0.4s ease';
-                        icon.style.color = 'white';
-                        icon.style.backgroundColor = 'darkgoldenrod';
-                    }
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    // Reset icon
-                    const icon = this.querySelector('.project-icon');
-                    if (icon) {
-                        icon.style.transform = 'scale(1)';
-                        icon.style.backgroundColor = 'rgba(184, 134, 11, 0.08)';
-                        icon.style.color = 'darkgoldenrod';
-                    }
-                });
+            card.addEventListener('mouseleave', function() {
+                // Reset icon
+                const icon = this.querySelector('.project-icon');
+                if (icon) {
+                    icon.style.transform = 'scale(1)';
+                    icon.style.backgroundColor = 'rgba(184, 134, 11, 0.08)';
+                    icon.style.color = 'darkgoldenrod';
+                }
             });
-            
-            // Video button click effect with modern popup
-            const videoBtn = document.querySelector('.video-btn');
-            if (videoBtn) {
-                videoBtn.addEventListener('click', function() {
-                    // Create modal backdrop
-                    const backdrop = document.createElement('div');
-                    backdrop.style.position = 'fixed';
-                    backdrop.style.top = '0';
-                    backdrop.style.left = '0';
-                    backdrop.style.width = '100%';
-                    backdrop.style.height = '100%';
-                    backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
-                    backdrop.style.zIndex = '1000';
-                    backdrop.style.display = 'flex';
-                    backdrop.style.alignItems = 'center';
-                    backdrop.style.justifyContent = 'center';
-                    backdrop.style.opacity = '0';
-                    backdrop.style.transition = 'opacity 0.3s ease';
-                    
-                    // Create video container
-                    const videoContainer = document.createElement('div');
-                    videoContainer.style.width = '80%';
-                    videoContainer.style.maxWidth = '900px';
-                    videoContainer.style.backgroundColor = '#000';
-                    videoContainer.style.borderRadius = '8px';
-                    videoContainer.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
-                    videoContainer.style.transform = 'scale(0.9)';
-                    videoContainer.style.transition = 'transform 0.3s ease';
-                    
-                    // Create close button
-                    const closeBtn = document.createElement('button');
-                    closeBtn.innerHTML = '&times;';
-                    closeBtn.style.position = 'absolute';
-                    closeBtn.style.top = '10px';
-                    closeBtn.style.right = '15px';
-                    closeBtn.style.background = 'none';
-                    closeBtn.style.border = 'none';
-                    closeBtn.style.color = '#fff';
-                    closeBtn.style.fontSize = '24px';
-                    closeBtn.style.cursor = 'pointer';
-                    closeBtn.style.zIndex = '1001';
-                    
-                    // Create video placeholder (in a real site, you'd insert an actual video)
-                    const videoPlaceholder = document.createElement('div');
-                    videoPlaceholder.style.padding = '56.25% 0 0 0'; // 16:9 aspect ratio
-                    videoPlaceholder.style.position = 'relative';
-                    videoPlaceholder.style.borderRadius = '8px';
-                    videoPlaceholder.style.overflow = 'hidden';
-                    
-                    const videoContent = document.createElement('div');
-                    videoContent.style.position = 'absolute';
-                    videoContent.style.top = '0';
-                    videoContent.style.left = '0';
-                    videoContent.style.width = '100%';
-                    videoContent.style.height = '100%';
-                    videoContent.style.display = 'flex';
-                    videoContent.style.alignItems = 'center';
-                    videoContent.style.justifyContent = 'center';
-                    videoContent.style.backgroundColor = '#111';
-                    videoContent.style.color = '#888';
-                    videoContent.innerHTML = '<div><i class="fa-solid fa-film" style="font-size: 48px; margin-bottom: 20px; color: darkgoldenrod;"></i><h3 style="margin: 0; font-weight: normal;">Project Showcase Video</h3><p style="margin-top: 10px;">Video preview will be available soon</p></div>';
-                    
-                    videoPlaceholder.appendChild(videoContent);
-                    videoContainer.appendChild(videoPlaceholder);
-                    backdrop.appendChild(closeBtn);
-                    backdrop.appendChild(videoContainer);
-                    document.body.appendChild(backdrop);
-                    
-                    // Trigger animation
-                    setTimeout(() => {
-                        backdrop.style.opacity = '1';
-                        videoContainer.style.transform = 'scale(1)';
-                    }, 10);
-                    
-                    // Close modal when clicking close button or backdrop
-                    closeBtn.addEventListener('click', closeModal);
-                    backdrop.addEventListener('click', function(e) {
-                        if (e.target === backdrop) closeModal();
-                    });
-                    
-                    function closeModal() {
-                        backdrop.style.opacity = '0';
-                        videoContainer.style.transform = 'scale(0.9)';
-                        setTimeout(() => {
-                            document.body.removeChild(backdrop);
-                        }, 300);
-                    }
-                });
-            }
-            
-            // Add smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // Mobile menu toggle
-            const mobileToggle = document.querySelector('.mobile-toggle');
-            const nav = document.querySelector('nav');
-            
-            if (mobileToggle) {
-                mobileToggle.addEventListener('click', function() {
-                    nav.classList.toggle('active');
-                    
-                    // Change icon based on state
-                    const icon = this.querySelector('i');
-                    if (nav.classList.contains('active')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                });
-                
-                // Close menu when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!nav.contains(e.target) && !mobileToggle.contains(e.target) && nav.classList.contains('active')) {
-                        nav.classList.remove('active');
-                        const icon = mobileToggle.querySelector('i');
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                });
-            }
         });
-    </script>
+        
+        // Video button click effect with modern popup
+        const videoBtn = document.querySelector('.video-btn');
+        if (videoBtn) {
+            videoBtn.addEventListener('click', function() {
+                // Create modal backdrop
+                const backdrop = document.createElement('div');
+                backdrop.style.position = 'fixed';
+                backdrop.style.top = '0';
+                backdrop.style.left = '0';
+                backdrop.style.width = '100%';
+                backdrop.style.height = '100%';
+                backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+                backdrop.style.zIndex = '1000';
+                backdrop.style.display = 'flex';
+                backdrop.style.alignItems = 'center';
+                backdrop.style.justifyContent = 'center';
+                backdrop.style.opacity = '0';
+                backdrop.style.transition = 'opacity 0.3s ease';
+                
+                // Create video container
+                const videoContainer = document.createElement('div');
+                videoContainer.style.width = '80%';
+                videoContainer.style.maxWidth = '900px';
+                videoContainer.style.backgroundColor = '#000';
+                videoContainer.style.borderRadius = '8px';
+                videoContainer.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
+                videoContainer.style.transform = 'scale(0.9)';
+                videoContainer.style.transition = 'transform 0.3s ease';
+                
+                // Create close button
+                const closeBtn = document.createElement('button');
+                closeBtn.innerHTML = '×';
+                closeBtn.style.position = 'absolute';
+                closeBtn.style.top = '10px';
+                closeBtn.style.right = '15px';
+                closeBtn.style.background = 'none';
+                closeBtn.style.border = 'none';
+                closeBtn.style.color = '#fff';
+                closeBtn.style.fontSize = '24px';
+                closeBtn.style.cursor = 'pointer';
+                closeBtn.style.zIndex = '1001';
+                
+                // Create video placeholder
+                const videoPlaceholder = document.createElement('div');
+                videoPlaceholder.style.padding = '56.25% 0 0 0'; // 16:9 aspect ratio
+                videoPlaceholder.style.position = 'relative';
+                videoPlaceholder.style.borderRadius = '8px';
+                videoPlaceholder.style.overflow = 'hidden';
+                
+                // Create video element
+                const videoContent = document.createElement('video');
+                videoContent.style.position = 'absolute';
+                videoContent.style.top = '0';
+                videoContent.style.left = '0';
+                videoContent.style.width = '100%';
+                videoContent.style.height = '100%';
+                videoContent.style.backgroundColor = '#111';
+                videoContent.controls = true;
+                videoContent.autoplay = true; // Auto-play when opened
+                videoContent.src = 'assets/Videos/videoplayback.mp4';
+                videoContent.type = 'video/mp4';
+                
+                videoPlaceholder.appendChild(videoContent);
+                videoContainer.appendChild(videoPlaceholder);
+                backdrop.appendChild(closeBtn);
+                backdrop.appendChild(videoContainer);
+                document.body.appendChild(backdrop);
+                
+                // Trigger animation
+                setTimeout(() => {
+                    backdrop.style.opacity = '1';
+                    videoContainer.style.transform = 'scale(1)';
+                }, 10);
+                
+                // Close modal when clicking close button or backdrop
+                closeBtn.addEventListener('click', closeModal);
+                backdrop.addEventListener('click', function(e) {
+                    if (e.target === backdrop) closeModal();
+                });
+                
+                function closeModal() {
+                    videoContent.pause(); // Stop video playback
+                    backdrop.style.opacity = '0';
+                    videoContainer.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        document.body.removeChild(backdrop);
+                    }, 300);
+                }
+            });
+        }
+        
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const nav = document.querySelector('nav');
+        
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                
+                // Change icon based on state
+                const icon = this.querySelector('i');
+                if (nav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!nav.contains(e.target) && !mobileToggle.contains(e.target) && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    const icon = mobileToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
