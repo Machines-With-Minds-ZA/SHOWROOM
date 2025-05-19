@@ -61,9 +61,17 @@
       position: relative;
     }
 
+    .logo-container {
+      z-index: 2; /* Ensure logo stays above nav */
+    }
+
+
     nav ul {
       display: flex;
       align-items: center;
+      gap: 15px; /* Adjust spacing between items */
+    padding: 0;
+    margin: 0;
     }
 
     nav ul li {
@@ -134,8 +142,17 @@
       }
       
       nav {
-        display: none;
-      }
+        position: fixed;
+        top: 0;
+        left: auto;
+        right: -250px;
+        width: 250px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.95);
+        transform: none;
+        transition: transform 0.3s ease;
+        padding: 80px 30px 30px;
+    }
       
       .mobile-toggle {
         display: block;
@@ -167,6 +184,14 @@
       nav ul li a {
         font-size: 16px;
       }
+      nav.active {
+        transform: translateX(-100%);
+      }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 20px;
+    }
 
       @keyframes slideIn {
         from {
@@ -537,6 +562,10 @@
       
       nav {
         display: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
       }
       
       .mobile-toggle {
@@ -558,6 +587,34 @@
         animation: slideIn 0.3s forwards;
       }
 
+      .logo-container {
+        gap: 8px;
+    }
+    .app-name {
+        font-size: 1rem;
+    }
+    nav {
+        position: fixed;
+        top: 0;
+        left: auto;
+        right: -250px;
+        width: 250px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.95);
+        transform: none;
+        transition: transform 0.3s ease;
+        padding: 80px 30px 30px;
+      }
+
+      nav.active {
+        transform: translateX(-100%);
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 20px;
+      }
+
       nav ul li {
         margin: 15px 0;
       }
@@ -565,6 +622,7 @@
       nav ul li a {
         font-size: 16px;
       }
+      
 
       @keyframes slideIn {
         from {
@@ -609,15 +667,8 @@
     text-decoration-thickness: 2px; /* Thicker underline */
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    .logo-container {
-        gap: 8px;
-    }
-    .app-name {
-        font-size: 1rem;
-    }
-}
+
+
   </style>
 </head>
 <body>
@@ -636,7 +687,7 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#projects" class="cta-btn">View Projects</a></li>
+                <li><a href="projects.html" class="cta-btn">View Projects</a></li>
             </ul>
         </nav>
     </div>
@@ -645,8 +696,8 @@
   <section class="hero">
     <div class="container">
       
-      <h1>We have a passion in creating<br>new and unique spaces</h1>
-      <p class="hero-subtitle">Explore my portfolio of projects that connect technology and innovation</p>
+      <h1>Welcome to Our <br>Project Showcase</h1>
+      <p class="hero-subtitle">A curated collection of innovative, purpose-driven projects — designed to inspire, engage, and highlight impactful solutions to real-world challenges.</p>
 
       <button class="watch-video">
         <i class="fas fa-play"></i> WATCH VIDEO
@@ -663,18 +714,18 @@
           </div>
           <h3>TELKOM</h3>
           <p>A telecommunications platform built with cutting-edge technology, providing seamless communication services to millions of users with unmatched reliability and innovative features.</p>
-          <a href="https://telkomtextmining.netlify.app/" class="read-more">Visit Site</a>
+          <a href="https://telkomtextmining.netlify.app/" class="read-more" target="_blank">Visit Site</a>
         </div>
         
         <div class="project-card glow">
           <div class="icon">
             <i class="fas fa-database"></i>
           </div>
-          <h3>DADAI</h3>
+          <h3>DAD AI</h3>
           <p>An artificial intelligence platform designed to provide parental guidance and support, offering personalized advice and resources to help navigate the challenges of parenthoodność
 
 .</p>
-          <a href="https://dadai.netlify.app/" class="read-more">Visit Site</a>
+          <a href="https://dadai.netlify.app/" class="read-more" target="_blank">Visit Site</a>
         </div>
         
         <div class="project-card glow">
@@ -683,7 +734,7 @@
           </div>
           <h3>ECOWAS</h3>
           <p>A comprehensive platform for the Economic Community of West African States, facilitating regional integration, economic cooperation, and political stability across member nations.</p>
-          <a href="https://bigdataecowas.netlify.app/" class="read-more">Visit Site</a>
+          <a href="https://bigdataecowas.netlify.app/" class="read-more" target="_blank">Visit Site</a>
         </div>
       </div>
     </div>
@@ -691,46 +742,51 @@
 
   <section class="additional-projects">
     <div class="container">
-      <h2>Additional Projects</h2>
-      <div class="project-grid">
-        <div class="project-item glow">
-          <div class="project-icon">
-            <i class="fas fa-vr-cardboard"></i>
-          </div>
-          <h3>VR Courtroom</h3>
-          <p>Virtual reality simulation of courtroom proceedings for legal education and training purposes.</p>
-          <a href="#" class="visit-link">Visit Project</a>
-        </div>
+        <h2>Additional Projects</h2>
+        <div class="project-grid">
+            <div class="project-item glow">
+                <div class="project-icon">
+                    <i class="fas fa-vr-cardboard"></i>
+                </div>
+                <h3>VR Courtroom</h3>
+                <p>Virtual reality simulation of courtroom proceedings for legal education and training purposes.</p>
+                <a href="https://vrcourtroom.netlify.app/" class="visit-link" target="_blank">Visit Project</a>
+            </div>
 
-        <div class="project-item glow">
-          <div class="project-icon">
-            <i class="fas fa-briefcase"></i>
-          </div>
-          <h3>Career Advisor</h3>
-          <p>AI-powered career guidance platform helping users discover optimal career paths based on their skills and interests.</p>
-          <a href="#" class="visit-link">Visit Project</a>
-        </div>
+            <div class="project-item glow">
+                <div class="project-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Career Advisor</h3>
+                <p>AI-powered career guidance platform helping users discover optimal career paths based on their skills and interests.</p>
+                <a href="https://aicareeradvisory.netlify.app/" class="visit-link" target="_blank">Visit Project</a>
+            </div>
 
-        <div class="project-item glow">
-          <div class="project-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3>Analytics Dashboard</h3>
-          <p>Comprehensive data visualization and analytics platform for business intelligence and decision making.</p>
-          <a href="#" class="visit-link">Visit Project</a>
-        </div>
+            <div class="project-item glow">
+                <div class="project-icon">
+                    <i class="fas fa-scale-balanced"></i>
+                </div>
+                <h3>LawBot 2.0</h3>
+                <p>An intelligent chatbot designed to support legal education by simplifying complex contract law concepts.</p>
+                <a href="https://mgslgroboticsandcoding.netlify.app/" class="visit-link" target="_blank">Visit Project</a>
+            </div>
 
-        <div class="project-item glow">
-          <div class="project-icon">
-            <i class="fas fa-shopping-cart"></i>
-          </div>
-          <h3>E-Commerce Solution</h3>
-          <p>Fully featured online shopping platform with secure payment processing and inventory management.</p>
-          <a href="#" class="visit-link">Visit Project</a>
+            <div class="project-item glow">
+                <div class="project-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h3>MSGL</h3>
+                <p>Hands-on curriculum delivering core skills in robotics, coding, and computational thinking through engaging projects.</p>
+                <a href="https://mgslgroboticsandcoding.netlify.app/" class="visit-link" target="_blank">Visit Project</a>
+            </div>
         </div>
-      </div>
+        
+        <!-- Centered "View All Projects" button -->
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="projects.html" class="cta-btn" target="_blank">View All Projects</a>
+        </div>
     </div>
-  </section>
+</section>
 
   <footer>
     <div class="container">
@@ -810,6 +866,9 @@
       });
     });
   }
+
+  
+
 
   // Animate elements on scroll
   const animateOnScroll = () => {
