@@ -439,11 +439,11 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#about">About</a></li>
+                    
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="team.html" class="active">Team</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                    <li><a href="index.html#projects" class="cta-btn">View Projects</a></li>
+                    <li><a href="contact">Contact</a></li>
+                    <li><a href="projects.html" class="cta-btn">View Projects</a></li>
                 </ul>
             </nav>
         </div>
@@ -459,126 +459,229 @@
     <section class="team-section">
       <div class="container">
         <!-- Professor Card -->
-        <div class="team-member glow" style="grid-column: 1 / -1; max-width: 280px; margin: 0 auto 30px;">
-          <img src="src/img/Prof.png" alt="Professor Abejide Ade-Ibijola" class="member-img">
-          <div class="member-info">
-            <h3>Professor Abejide Ade-Ibijola</h3>
-            <p class="member-role">Professor of Artificial Intelligence and Applications</p>
-          </div>
-        </div>
-
+        <div class="team-member glow" style="grid-column: 1 / -1; width: 350px; margin: 0 auto 30px; display: flex; flex-direction: column;">
+  <!-- Fixed image container with defined height -->
+  <div style="width: 100%; height: 220px; overflow: hidden;">
+    <img src="src/img/Prof.png" alt="Professor Abejide Ade-Ibijola" 
+         style="width: 100%; height: 100%; object-fit: cover; display: block;">
+  </div>
+  
+  <div class="member-info" style="padding: 15px 10px 20px; flex: 1;">
+    <h3 style="font-size: 1.3rem; margin: 0 0 8px 0;">Professor Abejide Ade-Ibijola</h3>
+    <p class="member-role" style="font-size: 1rem; line-height: 1.4; margin: 0;">Professor of Artificial Intelligence and Applications</p>
+  </div>
+</div>
         <!-- Team Grid -->
-        <div class="team-grid">
-          <!-- Student 1 -->
-          <div class="team-member glow">
-            <img src="src/img/_ibrahim_.jpg" alt="Ibrahim Kabore" class="member-img">
-            <div class="member-info">
-              <h3>Ibrahim Kabore</h3>
-              <p class="member-role">GritLab Software Engineer</p>
-            </div>
-          </div>
+        <section class="team-section">
+  <div class="container">
+  
 
-          <!-- Student 2 -->
-          <div class="team-member glow">
-            <img src="src/img/Junior.jpg" alt="Makhavhu Junior" class="member-img">
-            <div class="member-info">
-              <h3>Makhavhu Junior</h3>
-              <p class="member-role">GritLab Software Engineer</p>
-            </div>
-          </div>
-
-          <!-- Student 3 -->
-          <div class="team-member glow">
-            <img src="src/img/Ovayo.png" alt="Ovayo Ntebe" class="member-img">
-            <div class="member-info">
-              <h3>Ovayo Ntebe</h3>
-              <p class="member-role">GritLab Software Engineer</p>
-            </div>
-          </div>
-
-          <!-- Student 4 -->
-          <div class="team-member glow">
-            <img src="src/img/jackie.png" alt="Jackie Masukwa" class="member-img">
-            <div class="member-info">
-              <h3>Jackie Masukwa</h3>
-              <p class="member-role">GritLab Software Engineer</p>
-            </div>
-          </div>
-
-          <!-- Student 5 -->
-          <div class="team-member glow">
-            <img src="src/img/rn.png" alt="Ruan Bezuidenhout" class="member-img">
-            <div class="member-info">
-              <h3>Ruan Bezuidenhout</h3>
-              <p class="member-role">GritLab Software Engineer</p>
-            </div>
-          </div>
-
-          <!-- Student 6 -->
-          <div class="team-member glow">
-            <img src="src/img/nhlanhla.jpeg" alt="Nhlanhla Bhengu" class="member-img">
-            <div class="member-info">
-              <h3>Nhlanhla Bhengu</h3>
-              <p class="member-role">GritLab Software Engineer</p>
-            </div>
-          </div>
-
-          <div class="team-member glow">
-            <img src="src/img/nhlanhla.jpeg" alt="Nhlanhla Bhengu" class="member-img">
-            <div class="member-info">
-              <h3>Nhlanhla Bhengu</h3>
-              <p class="member-role">GritLab Software Engineer</p>
-            </div>
-          </div>
-
-          <div class="team-member glow">
-            <img src="src/img/russell.png" alt="Russell Masimba" class="member-img">
-            <div class="member-info">
-              <h3>Russell Masimba</h3>
-              <p class="member-role">GritLab Software Engineer</p>
-            </div>
-          </div>
-
-          <div class="team-member glow">
-            <img src="src/img/Simi.png" alt="Simbongile Sethembiso Sithole" class="member-img">
-            <div class="member-info">
-              <h3>Simbongile Sithole</h3>
-              <p class="member-role">GritLab Software Engineer</p>
-            </div>
-          </div>
-
-           
+    <!-- Team Grid (4 per row) -->
+    <div class="team-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+      <!-- Student 1 -->
+      <div class="team-member glow">
+        <img src="src/img/Obafemi.png" alt="Oluwatodunni Obafemi" class="member-img">
+        <div class="member-info">
+          <h3>Oluwatodunni Obafemi</h3>
+          <p class="member-role">GritLab Software Engineer</p>
         </div>
       </div>
+
+      <!-- Student 2 -->
+      <div class="team-member glow">
+        <img src="src/img/_tendo.jpg" alt="Tendo Mbambisa" class="member-img">
+        <div class="member-info">
+          <h3>Tendo Mbambisa</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 3 -->
+      <div class="team-member glow">
+        <img src="src/img/_kabena.jpg" alt="Kabena Ilunga" class="member-img">
+        <div class="member-info">
+          <h3>Kabena Ilunga</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 4 -->
+      <div class="team-member glow">
+        <img src="src/img/16.png" alt="Thato Tsosane" class="member-img">
+        <div class="member-info">
+          <h3>Thato Tsosane</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 5 -->
+      <div class="team-member glow">
+        <img src="src/img/rapudi.jpg" alt="Rapudi Hlakudi" class="member-img">
+        <div class="member-info">
+          <h3>Rapudi Hlakudi</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 6 -->
+      <div class="team-member glow">
+        <img src="src/img/Gumpo.png" alt="Cebolenkosi Gumpo" class="member-img">
+        <div class="member-info">
+          <h3>Cebolenkosi Gumpo</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 7 -->
+      <div class="team-member glow">
+        <img src="src/img/Sabelo.png" alt="Sabelo Zindela" class="member-img">
+        <div class="member-info">
+          <h3>Sabelo Zindela</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 8 -->
+      <div class="team-member glow">
+        <img src="src/img/rrr.png" alt="Andile Thebete" class="member-img">
+        <div class="member-info">
+          <h3>Andile Thebete</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 9 -->
+      <div class="team-member glow">
+        <img src="src/img/shaun.png" alt="Shauen Van der Merwe" class="member-img">
+        <div class="member-info">
+          <h3>Shauen Van der Merwe</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 10 -->
+      <div class="team-member glow">
+        <img src="src/img/IBRAHIM.jfif.png" alt="Ibrahim Kabore" class="member-img">
+        <div class="member-info">
+          <h3>Ibrahim Kabore</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 11 -->
+      <div class="team-member glow">
+        <img src="src/img/Junior.jpg" alt="Makhavhu Junior" class="member-img">
+        <div class="member-info">
+          <h3>Makhavhu Junior</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 12 -->
+      <div class="team-member glow">
+        <img src="src/img/Ovayo.png" alt="Ovayo Ntebe" class="member-img">
+        <div class="member-info">
+          <h3>Ovayo Ntebe</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 13 -->
+      <div class="team-member glow">
+        <img src="src/img/jackie.png" alt="Jackie Masukwa" class="member-img">
+        <div class="member-info">
+          <h3>Jackie Masukwa</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 14 -->
+      <div class="team-member glow">
+        <img src="src/img/rn.png" alt="Ruan Bezuidenhout" class="member-img">
+        <div class="member-info">
+          <h3>Ruan Bezuidenhout</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 15 -->
+      <div class="team-member glow">
+        <img src="src/img/_glen.jpg" alt="Glen Ndou" class="member-img">
+        <div class="member-info">
+          <h3>Glen Ndou</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 16 -->
+      <div class="team-member glow">
+        <img src="src/img/nhlanhla.jpeg" alt="Nhlanhla Bhengu" class="member-img">
+        <div class="member-info">
+          <h3>Nhlanhla Bhengu</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 17 -->
+      <div class="team-member glow">
+        <img src="src/img/russell.png" alt="Russell Masimba" class="member-img">
+        <div class="member-info">
+          <h3>Russell Masimba</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 18 -->
+      <div class="team-member glow">
+        <img src="src/img/Kutlwano.png" alt="Kutlwano Dikotsi" class="member-img">
+        <div class="member-info">
+          <h3>Kutlwano Dikotsi</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 19 -->
+      <div class="team-member glow">
+        <img src="src/img/Simi.png" alt="Simbongile Sethembiso Sithole" class="member-img">
+        <div class="member-info">
+          <h3>Simbongile Sithole</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+
+      <!-- Student 20 -->
+      <div class="team-member glow">
+        <img src="src/img/wonderful.jfif.png" alt="Wonderful Ngwenya" class="member-img">
+        <div class="member-info">
+          <h3>Wonderful Ngwenya</h3>
+          <p class="member-role">GritLab Software Engineer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+     
     </section>
 
-    <footer>
+    <footer id="contact">
       <div class="container">
         <div class="footer-content">
           <img src="assets/images/logo.png" alt="ECOWAS Logo" class="logo-img" style="max-height: 50px;">
           <div class="footer-links">
             <h4>Links</h4>
             <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="index.html#about">About</a></li>
-              <li><a href="projects.html">Projects</a></li>
-              <li><a href="team.html">Team</a></li>
-            </ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Teams.html">Team</a></li>
+            <li><a href="projects.html">Projects</a></li>
+           
+          </ul>
           </div>
           <div class="footer-contact">
             <h4>Contact</h4>
             <p>Email: jbs.innovation@uj.ac.za</p>
             <p>Phone: +27 63 155 2047</p>
           </div>
-          <div class="footer-social">
-            <h4>Follow Us</h4>
-            <div class="social-icons">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
+        
         </div>
         <div class="copyright">
             <p>© 2025 Apps GritLab Africa. All rights reserved.</p>
