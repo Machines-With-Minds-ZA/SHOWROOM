@@ -429,6 +429,22 @@
       font-size: 0.9rem;
     }
 
+    /* ---------- Cookie Consent Bar ---------- */
+    .cookie-consent { position:fixed; bottom:0; left:0; width:100%; background:#222; color:#fff; padding:20px;
+                      display:flex; justify-content:space-between; align-items:center; z-index:999;
+                      box-shadow:0 -2px 10px rgba(0,0,0,.3); font-size:.9rem; gap:20px; }
+    .cookie-consent.hidden { display:none; }
+    .cookie-consent-text { flex:1; }
+    .cookie-consent-text a { color:darkgoldenrod; text-decoration:underline; }
+    .cookie-consent-buttons { display:flex; gap:10px; flex-wrap:wrap; }
+    .cookie-btn { padding:10px 20px; border:none; border-radius:5px; cursor:pointer; font-weight:600;
+                  transition:all .3s; }
+    .cookie-accept { background:darkgoldenrod; color:#000; }
+    .cookie-accept:hover { background:#b8860b; }
+    .cookie-reject { background:#666; color:#fff; }
+    .cookie-reject:hover { background:#555; }
+    @media (max-width:768px) { .cookie-consent { flex-direction:column; align-items:flex-start; gap:15px; } }
+
     @media (max-width: 768px) {
       header {
         padding: 15px 0;
@@ -560,6 +576,18 @@
   </style>
 </head>
 <body>
+    <!-- Cookie Consent Bar -->
+    <div class="cookie-consent" id="cookieConsent">
+      <div class="cookie-consent-text">
+        We use cookies to enhance your experience. By continuing to browse, you agree to our use of cookies.
+        <a href="#" onclick="event.preventDefault()">Learn more</a>
+      </div>
+      <div class="cookie-consent-buttons">
+        <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
+        <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject</button>
+      </div>
+    </div>
+
     <div class="intro-overlay">
         <img src="assets/images/logo.png" alt="ECOWAS Logo" class="intro-text" style="max-height: 70px;">
         <span class="app-name">Showroom GRIT Lab Africa</span>
@@ -1012,6 +1040,24 @@
 
     animateOnScroll();
     enhanceGlowEffects();
+
+    /* ---------- Cookie Consent ---------- */
+    function initCookies() {
+      const cookieConsent = document.getElementById('cookieConsent');
+      const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+      if (cookiesAccepted) {
+        cookieConsent.classList.add('hidden');
+      }
+    }
+    window.acceptCookies = function() {
+      localStorage.setItem('cookiesAccepted', 'true');
+      document.getElementById('cookieConsent').classList.add('hidden');
+    }
+    window.rejectCookies = function() {
+      localStorage.setItem('cookiesAccepted', 'false');
+      document.getElementById('cookieConsent').classList.add('hidden');
+    }
+    initCookies();
   });
 </script>
 </body>
