@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Apps GritLab Africa</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #000;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      padding: 20px 0;
+      z-index: 1000;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: auto;
+    }
+
+    .app-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #000;
+      text-decoration: underline;
+      text-decoration-color: darkgoldenrod;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 2px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      color: #000;
+      font-weight: 500;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    nav ul li a.active,
+    nav ul li a:hover {
+      color: darkgoldenrod;
+    }
+
+    .cta-btn {
+      background: darkgoldenrod;
+      color: #000 !important;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .cta-btn:hover {
+      background: #b8860b;
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 0;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 250px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.95);
+        transition: transform 0.3s ease;
+        padding: 80px 30px 30px;
+      }
+
+      nav.active {
+        transform: translateX(-100%);
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    /* Intro Overlay */
+    .intro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      backdrop-filter: blur(10px);
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      flex-direction: column;
+    }
+
+    .intro-overlay.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Contact Hero */
+    .contact-hero {
+      min-height: 40vh;
+      background: linear-gradient(rgba(226, 221, 221, 0.7), rgba(226, 221, 221, 0.7)), url('src/img/ShowcaseBackground.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      margin-top: 80px;
+      overflow: hidden;
+    }
+
+    .contact-hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .contact-hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 80px 0;
+      background: #f9f9f9;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 60px;
+      align-items: start;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contact-info {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-info h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #000;
+    }
+
+    .info-item {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .info-item i {
+      font-size: 1.5rem;
+      color: darkgoldenrod;
+      margin-top: 5px;
+      width: 30px;
+    }
+
+    .info-item h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: #000;
+    }
+
+    .info-item p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .info-item a {
+      color: darkgoldenrod;
+      transition: color 0.3s;
+    }
+
+    .info-item a:hover {
+      color: #b8860b;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #000;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #000;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: darkgoldenrod;
+      box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: darkgoldenrod;
+      color: #000;
+      padding: 12px 40px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: #b8860b;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(184, 134, 11, 0.3);
+    }
+
+    /* Social Links */
+    .social-links {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px solid #e0e0e0;
+    }
+
+    .social-links h3 {
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: darkgoldenrod;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+
+    .social-icons a:hover {
+      background: #b8860b;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(184, 134, 11, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #111;
+      color: #fff;
+      padding: 60px 0 20px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-links h4,
+    .footer-contact h4 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul li a {
+      color: #fff;
+      transition: color 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+      color: darkgoldenrod;
+    }
+
+    .footer-contact p {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contact-hero {
+        margin-top: 60px;
+      }
+
+      .contact-hero h1 {
+        font-size: 2rem;
+      }
+
+      .contact-hero p {
+        font-size: 1rem;
+      }
+
+      .contact-section {
+        padding: 50px 0;
+      }
+
+      .contact-info,
+      .contact-form {
+        padding: 30px;
+      }
+
+      .contact-info h2,
+      .contact-form h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Intro Overlay -->
+  <div class="intro-overlay">
+    <img src="assets/images/logo.png" alt="Logo" style="max-height:70px;">
+    <span class="app-name">Apps Grit Lab Africa</span>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo-container">
+        <img src="assets/images/logo.png" alt="Logo" class="logo-img">
+        <span class="app-name">Apps Grit Lab Africa</span>
+      </div>
+      <button type="button" class="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="Teams.html">Team</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="projects.html" class="cta-btn">View Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contact Hero -->
+  <section class="contact-hero">
+    <div class="container">
+      <h1>Get In Touch</h1>
+      <p>Have a question or want to collaborate? We'd love to hear from you. Reach out to us using the form below or contact us directly.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-container">
+        <!-- Contact Information -->
+        <div class="contact-info">
+          <h2>Contact Information</h2>
+
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h3>Phone</h3>
+              <p><a href="tel:+27732920243">+27 73 292 0243</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <p><a href="mailto:info@gritlabafrica.org">info@gritlabafrica.org</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Location</h3>
+              <p>GritLab Africa<br>South Africa</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h3>Hours</h3>
+              <p>Monday - Friday: 9:00 AM - 5:00 PM SAST<br>Saturday & Sunday: Closed</p>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+              <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <img src="assets/images/logo.png" alt="Logo" class="logo-img" style="max-height: 50px;">
+        <div class="footer-links">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="Teams.html">Team</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>Email: <a href="mailto:info@gritlabafrica.org" style="color: #fff;">info@gritlabafrica.org</a></p>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>Showsroom GRITLab Africa. © 2025 All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Intro animation
+      const introOverlay = document.querySelector('.intro-overlay');
+      if (introOverlay) {
+        setTimeout(() => {
+          introOverlay.classList.add('hide');
+          setTimeout(() => {
+            introOverlay.remove();
+          }, 500);
+        }, 3000);
+      }
+
+      // Mobile Menu Toggle
+      const mobileToggle = document.querySelector('.mobile-toggle');
+      const nav = document.querySelector('nav');
+
+      if (mobileToggle) {
+        mobileToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          nav.classList.toggle('active');
+
+          const icon = this.querySelector('i');
+          if (nav.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+
+        document.addEventListener('click', function(e) {
+          if (!nav.contains(e.target) && e.target !== mobileToggle && nav.classList.contains('active')) {
+            nav.classList.remove('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
