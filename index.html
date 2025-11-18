@@ -397,11 +397,11 @@
           cookieConsent.classList.add('hidden');
         }
       }
-      function acceptCookies() {
+      window.acceptCookies = function() {
         localStorage.setItem('cookiesAccepted', 'true');
         document.getElementById('cookieConsent').classList.add('hidden');
       }
-      function rejectCookies() {
+      window.rejectCookies = function() {
         localStorage.setItem('cookiesAccepted', 'false');
         document.getElementById('cookieConsent').classList.add('hidden');
       }

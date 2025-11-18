@@ -1049,16 +1049,16 @@
         cookieConsent.classList.add('hidden');
       }
     }
-    window.acceptCookies = function() {
-      localStorage.setItem('cookiesAccepted', 'true');
-      document.getElementById('cookieConsent').classList.add('hidden');
-    }
-    window.rejectCookies = function() {
-      localStorage.setItem('cookiesAccepted', 'false');
-      document.getElementById('cookieConsent').classList.add('hidden');
-    }
-    initCookies();
-  });
+      window.acceptCookies = function() {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookieConsent').classList.add('hidden');
+      }
+      window.rejectCookies = function() {
+        localStorage.setItem('cookiesAccepted', 'false');
+        document.getElementById('cookieConsent').classList.add('hidden');
+      }
+      initCookies();
+    });
 </script>
 </body>
 </html>
