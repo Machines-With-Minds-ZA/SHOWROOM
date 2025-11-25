@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Album View - Showroom GRIT Lab Africa</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css">     
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <style>
+    /* Global Settings */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Poppins',sans-serif; color:#000; background: #fff !important; }
+    .container { width:90%; max-width:1600px; margin:0 auto; padding:0 15px; }
+    a { text-decoration:none; color:#000; }
+    ul { list-style:none; }
+
+    /* ---------- Header & Nav (Same as before) ---------- */
+    header { position:absolute; width:100%; top:0; left:0; padding:20px 0; z-index:1000; background:#fff; }
+    header .container { display:flex; justify-content:space-between; align-items:center; position:relative; }
+    .logo-container { display:flex; align-items:center; gap:15px; z-index:2; }
+    .logo-img { height:50px; width:auto; }
+    .app-name { font-size:1.2rem; font-weight:800; color:#000; text-decoration:underline; text-decoration-color:darkgoldenrod; text-underline-offset:5px; text-decoration-thickness:2px; }
+    nav ul { display:flex; align-items:center; gap:15px; }
+    nav ul li a { color:#000; font-weight:500; font-size:14px; transition:color .3s; }
+    nav ul li a:hover { color:darkgoldenrod; }
+    .cta-btn { background:darkgoldenrod; color:#000 !important; padding:10px 20px; border-radius:5px; transition:bg .3s; }
+    .cta-btn:hover { background:#b8860b; }
+    .mobile-toggle { display:none; background:transparent; border:none; color:#000; font-size:24px; cursor:pointer; position:absolute; right:15px; top:50%; transform:translateY(-50%); z-index:1001; }
+    
+    @media (max-width:768px) {
+      header { position:relative; padding:15px 0; }
+      .mobile-toggle { display:block; }
+      nav { position:fixed; top:0; right:-250px; width:250px; height:100vh; background:rgba(255,255,255,.95); transition:transform .3s ease; padding:80px 30px 30px; }
+      nav.active { transform:translateX(-100%); }
+      nav ul { flex-direction:column; gap:20px; }
+    }
+
+    /* ---------- Intro Overlay ---------- */
+    .intro-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.8); display:flex; align-items:center; justify-content:center; z-index:2000; backdrop-filter:blur(10px); opacity:1; transition:opacity .5s ease; flex-direction: column; }
+    .intro-overlay-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .intro-overlay.hide { opacity:0; pointer-events:none; }
+    .intro-text { font-size:4rem; font-weight:900; color:white; text-transform:uppercase; letter-spacing:2px; text-shadow:0 0 15px rgba(255,215,0,.8); animation:pulse 1.5s ease-in-out infinite; margin-top: 15px; }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.05);opacity:.9} }
+    @media (max-width:768px) { .intro-text { font-size:2.5rem; } }
+    .intro-overlay .app-name { color: white; text-shadow: 0 0 5px rgba(255,215,0,.8); text-decoration: none; }
+
+    /* ---------- Footer ---------- */
+    footer { background:#111; color:#fff; padding:60px 0 20px; }
+    .footer-content { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:40px; margin-bottom:40px; }
+    .footer-links h4, .footer-contact h4, .footer-social h4 { font-size:1.2rem; margin-bottom:20px; color:#fff; }
+    .footer-links ul li { margin-bottom:10px; }
+    .footer-links ul li a { color:#fff; transition:color .3s; }
+    .footer-links ul li a:hover { color:darkgoldenrod; }
+    .social-icons { display:flex; gap:15px; }
+    .social-icons a { color:#000; background:#fff; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:bg .3s; }
+    .social-icons a:hover { background:darkgoldenrod; color:#fff; }
+    .copyright { text-align:center; padding-top:20px; border-top:1px solid #333; font-size:.9rem; }
+
+    /* ---------- Cookie Consent ---------- */
+    .cookie-consent { position:fixed; bottom:0; left:0; width:100%; background:#222; color:#fff; padding:20px; display:flex; justify-content:space-between; align-items:center; z-index:999; box-shadow:0 -2px 10px rgba(0,0,0,.3); font-size:.9rem; gap:20px; }
+    .cookie-consent.hidden { display:none; }
+    .cookie-consent-buttons { display:flex; gap:10px; }
+    .cookie-btn { padding:10px 20px; border:none; border-radius:5px; cursor:pointer; font-weight:600; }
+    .cookie-accept { background:darkgoldenrod; color:#000; }
+    .cookie-reject { background:#666; color:#fff; }
+
+    /* ---------- GREEDY PACKERY LAYOUT ---------- */
+    .gallery-page-container { padding-top: 120px; min-height: 80vh; }
+    
+    .gallery-warp {
+        width: 100%;
+    }
+    
+    /* THE TRICK: 
+       1. Items are exactly 25% or 50% wide (math is perfect).
+       2. We use PADDING inside the item to create the white space.
+       3. This lets Packery touch the divs together (perfect packing) 
+          while the images look separated.
+    */
+    .grid-sizer,
+    .gallery-item {
+        float: left;
+        width: 25%;
+        border: none;
+        padding: 5px; /* Creates 10px gap between images (5px + 5px) */
+    }
+
+    /* Size Modifiers */
+    .gallery-item.gi-big { width: 50%; }
+    .gallery-item.gi-wide { width: 50%; }
+
+    /* Aspect Ratio Container */
+    .gallery-item a {
+        display: block;
+        width: 100%;
+        height: 0;
+        position: relative;
+        overflow: hidden;
+        border-radius: 4px; 
+    }
+
+    /* 1x1 Square */
+    .gallery-item a { padding-bottom: 100%; }
+
+    /* 2x2 Big Square */
+    .gallery-item.gi-big a { padding-bottom: 100%; }
+
+    /* 2x1 Wide Rectangle */
+    .gallery-item.gi-wide a { padding-bottom: 50%; }
+
+    .gallery-item img {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; 
+        height: 100%;
+        object-fit: cover; 
+        display: block;
+        transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img {
+        transform: scale(1.05);
+    }
+    
+    /* Responsive */
+    @media (max-width: 991px) {
+        .grid-sizer, .gallery-item { width: 50%; } 
+        .gallery-item.gi-big { width: 100%; }
+        .gallery-item.gi-wide { width: 100%; }
+    }
+    @media (max-width: 576px) {
+        .grid-sizer, .gallery-item { width: 100%; }
+        .gallery-item.gi-big { width: 100%; }
+        .gallery-item.gi-wide { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cookie-consent" id="cookieConsent">
+    <div class="cookie-consent-text">
+      We use cookies to enhance your experience. 
+      <a href="#" onclick="event.preventDefault()">Learn more</a>
+    </div>
+    <div class="cookie-consent-buttons">
+      <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
+      <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject</button>
+    </div>
+  </div>
+
+  <div class="intro-overlay">
+    <div class="intro-overlay-content">
+        <img src="assets/images/logo.png" alt="Logo" style="max-height:70px;">
+        <span class="intro-text">Showroom GRIT Lab Africa</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+        <div class="logo-container">
+            <img src="assets/images/logo.png" alt="Logo" class="logo-img" style="max-height: 50px;">
+            <span class="app-name">Showroom GRITLab Africa</span>
+        </div>
+        <button type="button" class="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
+        <nav>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="Teams.html">Team</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="projects.html" class="cta-btn">View Projects</a></li>
+            </ul>
+        </nav>
+    </div>
+  </header>
+
+  <div class="container gallery-page-container">
+      <div class="row mb-4">
+          <div class="col-12">
+              <h1 class="mb-4" id="album-title" data-aos="fade-down" style="margin-top: 20px;">Album View</h1>
+              <a href="gallery.html" class="btn btn-primary">Back to Albums</a>
+          </div>
+      </div>
+      <div class="row" id="gallery-container"></div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <img src="assets/images/logo.png" alt="Logo" class="logo-img" style="max-height: 50px;">
+        <div class="footer-links">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>Email: <a href="mailto:info@gritlabafrica.org" style="color: #fff;">info@gritlabafrica.org</a></p>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>Showroom GRIT Lab Africa © 2025</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+  
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script src="https://unpkg.com/isotope-packery@2/packery-mode.pkgd.js"></script>
+  
+  <script>
+    AOS.init({ duration: 800, easing: 'slide', once: true });
+
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const albumId = urlParams.get('id');
+
+        if (!albumId) { console.error("No album ID"); return; }
+
+        $.getJSON('assets/json/data.json', function(data) {
+            const album = data.albums.find(a => a.id === albumId);
+            if (album) renderAlbum(album);
+            else $('#gallery-container').html('<p>Album not found.</p>');
+        });
+
+        function renderAlbum(album) {
+            $('#album-title').text(album.title);
+            const container = $('#gallery-container');
+            container.empty();
+
+            const galleryWarp = $('<div class="gallery-warp"><div class="grid-sizer"></div></div>');
+
+            album.images.forEach((imgObj) => {
+                 const src = typeof imgObj === 'string' ? imgObj : imgObj.src;
+                 let sizeClass = ''; 
+                 const rand = Math.random();
+                 
+                 // Random Sizes
+                 if (rand < 0.20) sizeClass = 'gi-big';      // 20% Big
+                 else if (rand < 0.40) sizeClass = 'gi-wide'; // 20% Wide
+                 // 60% Small (High count of small items helps fill gaps!)
+
+                 const html = `
+                  <div class="gallery-item ${sizeClass} item" data-src="${src}" data-sub-html="<h4>${album.title}</h4>">
+                      <a href="#"><img src="${src}" alt="Image"></a>
+                  </div>`;
+                  galleryWarp.append(html);
+            });
+            
+            container.append(galleryWarp);
+            
+            // INITIALIZE WITH PACKERY MODE
+            const $grid = galleryWarp.isotope({
+                itemSelector: '.gallery-item',
+                percentPosition: true,
+                layoutMode: 'packery', // GREEDY PLACEMENT
+                packery: {
+                    columnWidth: '.grid-sizer',
+                    gutter: 0 // We handle gaps via CSS Padding
+                }
+            });
+
+            $grid.imagesLoaded().progress( function() {
+                $grid.isotope('layout');
+            });
+            
+            galleryWarp.lightGallery({ selector: '.item' });
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Intro
+      const intro = document.querySelector('.intro-overlay');
+      if (intro) setTimeout(() => { intro.classList.add('hide'); setTimeout(() => intro.remove(), 500); }, 3000);
+
+      // Mobile Menu
+      const toggle = document.querySelector('.mobile-toggle');
+      const nav = document.querySelector('nav');
+      if (toggle) {
+        toggle.addEventListener('click', e => {
+          e.stopPropagation(); nav.classList.toggle('active');
+          toggle.querySelector('i').classList.toggle('fa-bars');
+          toggle.querySelector('i').classList.toggle('fa-times');
+        });
+        document.addEventListener('click', e => {
+           if(!nav.contains(e.target) && e.target !== toggle) {
+             nav.classList.remove('active');
+             toggle.querySelector('i').classList.replace('fa-times','fa-bars');
+           }
+        });
+      }
+
+      // Cookies
+      if (localStorage.getItem('cookiesAccepted')) document.getElementById('cookieConsent').classList.add('hidden');
+      window.acceptCookies = () => { localStorage.setItem('cookiesAccepted', 'true'); document.getElementById('cookieConsent').classList.add('hidden'); }
+      window.rejectCookies = () => { localStorage.setItem('cookiesAccepted', 'false'); document.getElementById('cookieConsent').classList.add('hidden'); }
+    });
+  </script>
+</body>
+</html>

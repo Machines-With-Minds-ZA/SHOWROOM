@@ -1,0 +1,78 @@
+{
+  "albums": [
+    {
+      "id": "nature",
+      "title": "Nature Collection",
+      "cover": "https://i.ibb.co/40JwJKq/nature-small-1.jpg",
+      "images": [
+        "https://i.ibb.co/40JwJKq/nature-small-1.jpg",
+        "https://i.ibb.co/VYpBTH01/nature-small-2.jpg",
+        "https://i.ibb.co/RT3D8cTj/nature-small-3.jpg",
+        "https://i.ibb.co/p61jBwzC/nature-small-4.jpg",
+        "https://i.ibb.co/B2K0L51z/nature-small-5.jpg",
+        "https://i.ibb.co/TD51RmkQ/nature-small-6.jpg",
+        "https://i.ibb.co/jkfZnkMJ/nature-small-7.jpg",
+        "https://i.ibb.co/nqnD70GS/nature-small-8.jpg",
+        "https://i.ibb.co/VcTN7Sw2/nature-small-9.jpg",
+        "https://i.ibb.co/fVG05M7b/nature-big-7.jpg",
+        "https://i.ibb.co/Kz6wCRBs/nature-big-8.jpg",
+        "https://i.ibb.co/FbgyDwSJ/nature-big-9.jpg",
+        "https://i.ibb.co/1GJKcJzz/nature-big-1.jpg",
+        "https://i.ibb.co/tdbnCYm/nature-big-2.jpg",
+        "https://i.ibb.co/hRYXNp44/nature-big-3.jpg",
+        "https://i.ibb.co/Kc5zRw76/nature-big-4.jpg",
+        "https://i.ibb.co/qM1fPxTk/nature-big-5.jpg",
+        "https://i.ibb.co/ymnPy0X7/nature-big-6.jpg"
+      ]
+    },
+    {
+      "id": "people",
+      "title": "People & Portraits",
+      "cover": "https://i.ibb.co/XxsRTGgp/person-1.jpg",
+      "images": [
+        "https://i.ibb.co/XxsRTGgp/person-1.jpg",
+        "https://i.ibb.co/qMHKyczR/person-2.jpg",
+        "https://i.ibb.co/7J4DB8Dy/person-3.jpg",
+        "https://i.ibb.co/MxHWKyDF/person-4.jpg",
+        "https://i.ibb.co/FLwCDRBj/person-5.jpg",
+        "https://i.ibb.co/27DVKsvK/person-6.jpg"
+      ]
+    },
+    {
+      "id": "events",
+      "title": "Event Highlights",
+      "cover": "https://i.ibb.co/HT8FzwZy/img-1.jpg",
+      "images": [
+        "https://i.ibb.co/PzhbjRg5/img-7.jpg",
+        "https://i.ibb.co/F408DYWs/hero-bg-1.jpg",
+        "https://i.ibb.co/1YGgBLJ5/hero-bg-2.jpg",
+        "https://i.ibb.co/dsNCCw6W/hero-bg-3.jpg",
+        "https://i.ibb.co/HT8FzwZy/img-1.jpg",
+        "https://i.ibb.co/8D935g6Y/img-2.jpg",
+        "https://i.ibb.co/1tgK42RY/img-3.jpg",
+        "https://i.ibb.co/DHKYJw2f/img-4.jpg",
+        "https://i.ibb.co/KpdDmxm1/img-5.jpg",
+        "https://i.ibb.co/LXrzsCzm/img-6.jpg"
+      ]
+    },
+    {
+      "id": "showcase",
+      "title": "Project Showcase",
+      "cover": "https://i.ibb.co/fzG10qs1/1.jpg",
+      "images": [
+        "https://i.ibb.co/4nbzxk4F/about.jpg",
+        "https://i.ibb.co/fzG10qs1/1.jpg",
+        "https://i.ibb.co/SwBhzNpx/2.jpg",
+        "https://i.ibb.co/VWNv1L00/3.jpg",
+        "https://i.ibb.co/BHrT8C25/4.jpg",
+        "https://i.ibb.co/cSZSNzw7/5.jpg",
+        "https://i.ibb.co/LddtVBQT/6.jpg",
+        "https://i.ibb.co/jS8GZLK/7.jpg",
+        "https://i.ibb.co/yBQb4K2q/8.jpg",
+        "https://i.ibb.co/qMvpJMB2/9.jpg",
+        "https://i.ibb.co/MD9Ltp26/10.jpg",
+        "https://i.ibb.co/rR08pgtZ/11.jpg"
+      ]
+    }
+  ]
+}
