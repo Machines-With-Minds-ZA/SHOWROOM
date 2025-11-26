@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# dont store config files for tools
+tools/Compress Images/ffmpeg_config.json
