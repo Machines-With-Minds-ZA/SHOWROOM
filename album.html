@@ -264,7 +264,7 @@
 
                  const html = `
                   <div class="gallery-item ${sizeClass} item" data-src="${src}" data-sub-html="<h4>${album.title}</h4>">
-                      <a href="#"><img src="${src}" alt="Image"></a>
+                      <a href="#"><img src="${src}" alt="Image" loading="lazy"></a>
                   </div>`;
                   galleryWarp.append(html);
             });
