@@ -163,6 +163,21 @@
 
     /* ---------- Misc ---------- */
     .html { scroll-behavior:smooth; }
+    /* ---------- Bottom Video Grid ---------- */
+    .video-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:24px; }
+    @media (max-width: 900px) { .video-grid { grid-template-columns:1fr; } }
+    .video-card { background:#fff; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.08); overflow:hidden; transition:transform .3s, box-shadow .3s; }
+    .video-card:hover { transform:translateY(-4px); box-shadow:0 14px 40px rgba(184,134,11,.18); }
+    .video-card .thumb { position:relative; aspect-ratio:16/9; background:#eee; }
+    .video-card .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+    .video-card .play-btn { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:64px; height:64px; border:none; border-radius:50%; background:rgba(255,255,255,.9); color:#000; font-size:22px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.25); transition:all .2s; }
+    .video-card .play-btn:hover { background:darkgoldenrod; color:#fff; }
+    .video-card .video-meta { padding:16px 18px 20px; }
+    .video-card .video-meta h3 { font-size:1.1rem; margin-bottom:6px; }
+    .video-card .video-meta p { font-size:.9rem; color:#555; }
+    .video-card .player { position:relative; aspect-ratio:16/9; overflow:hidden; }
+    .video-card .player iframe,
+    .video-card .player video { position:absolute; inset:0; width:100%; height:100%; border:none; }
   </style>
 </head>
 <body>
@@ -301,24 +316,33 @@
   <section class="featured-video-section">
     <div class="container">
       <div class="section-title">
-        <h2>Featured Project</h2>
+        <h2>Featured Videos</h2>
         <div class="title-underline"></div>
+        <p style="text-align:center; max-width:800px; margin:10px auto 0; color:#444; font-size:.95rem;">Explore two highlights side-by-side. Click a thumbnail to play.</p>
       </div>
-      
-      <div class="video-wrapper">
-        <div class="video-content">
-          <h3>ECVR - Extended Classroom Virtual Reality</h3>
-          <p>Discover our innovative virtual reality solution that's transforming educational experiences through immersive technology.</p>
-          <!-- Local MP4 embed in the same responsive container -->
-          <div class="embed-responsive">
-            <video
-              class="embed-responsive-item"
-              controls loop playsinline preload="metadata"
-              style="width:100%; height:100%; object-fit:cover; border:none;"
-            >
-              <source src="assets/Video/ECVR_1080p_WEB.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+
+      <div class="video-grid">
+        <!-- Card 1: ECVR YouTube -->
+        <div class="video-card" data-type="youtube" data-src="https://www.youtube.com/embed/-M3NMZVBs8g?rel=0&modestbranding=1&color=white">
+          <div class="thumb">
+            <img src="https://img.youtube.com/vi/-M3NMZVBs8g/maxresdefault.jpg" alt="ECVR Thumbnail" />
+            <button class="play-btn" aria-label="Play ECVR video"><i class="fa-solid fa-play"></i></button>
+          </div>
+          <div class="video-meta">
+            <h3>ECVR — Extended Classroom VR</h3>
+            <p>Immersive education powered by virtual reality.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: VR Courtroom YouTube -->
+        <div class="video-card" data-type="youtube" data-src="https://www.youtube.com/embed/OPL1DhkFCu8?rel=0&modestbranding=1&color=white">
+          <div class="thumb">
+            <img src="https://img.youtube.com/vi/OPL1DhkFCu8/maxresdefault.jpg" alt="VR Courtroom Thumbnail" />
+            <button class="play-btn" aria-label="Play VR Courtroom video"><i class="fa-solid fa-play"></i></button>
+          </div>
+          <div class="video-meta">
+            <h3>First VR Courtroom in Africa</h3>
+            <p>A quick showcase of the VR Courtroom in action.</p>
           </div>
         </div>
       </div>
@@ -438,6 +462,40 @@
         document.getElementById('cookieConsent').classList.add('hidden');
       }
       initCookies();
+
+      /* ---------- Bottom video thumbnails: click-to-play ---------- */
+      document.querySelectorAll('.video-card').forEach(card => {
+        const btn = card.querySelector('.play-btn');
+        const type = card.getAttribute('data-type');
+        const src = card.getAttribute('data-src');
+        if (!btn || !type || !src) return;
+        btn.addEventListener('click', () => {
+          const thumb = card.querySelector('.thumb');
+          if (!thumb) return;
+          const player = document.createElement('div');
+          player.className = 'player';
+          if (type === 'youtube') {
+            const iframe = document.createElement('iframe');
+            const url = src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`;
+            iframe.src = url;
+            iframe.title = 'YouTube video player';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+            player.appendChild(iframe);
+          } else {
+            const video = document.createElement('video');
+            video.controls = true;
+            video.playsInline = true;
+            const source = document.createElement('source');
+            source.src = src;
+            source.type = 'video/mp4';
+            video.appendChild(source);
+            player.appendChild(video);
+            video.play().catch(() => {});
+          }
+          thumb.replaceWith(player);
+        });
+      });
     });
   </script>
 </body>
