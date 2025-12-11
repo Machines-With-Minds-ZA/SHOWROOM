@@ -28,7 +28,6 @@ tools/Compress Images/ffmpeg_config.json
 
 # Large media assets (keep local; use CDN or compress before commit)
 assets/Video/*.mp4
-!assets/Video/ECVR_1080p_WEB.mp4
 assets/Video/*.mov
 assets/Video/*.avi
 assets/Video/*.mkv
