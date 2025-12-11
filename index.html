@@ -309,16 +309,16 @@
         <div class="video-content">
           <h3>ECVR - Extended Classroom Virtual Reality</h3>
           <p>Discover our innovative virtual reality solution that's transforming educational experiences through immersive technology.</p>
-          <!-- Responsive YouTube Embed -->
+          <!-- Local MP4 embed in the same responsive container -->
           <div class="embed-responsive">
-            <!-- Replace VIDEO_ID with your YouTube video ID or full embed URL -->
-            <iframe
+            <video
               class="embed-responsive-item"
-              src="https://www.youtube.com/embed/P8TA5e5wEIQ?rel=0&modestbranding=1&color=white"
-              title="ECVR - Extended Classroom Virtual Reality"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
+              controls loop playsinline preload="metadata"
+              style="width:100%; height:100%; object-fit:cover; border:none;"
+            >
+              <source src="assets/Video/ECVR_1080p_WEB.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>
