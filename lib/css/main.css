@@ -561,3 +561,85 @@
         font-size: 2.5rem;
       }
     }
+
+    /* Featured Video Section */
+    .featured-video-section {
+      padding: 40px 0 60px;
+      background: #fafafa;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .title-underline {
+      width: 60px;
+      height: 3px;
+      background: darkgoldenrod;
+      margin: 0 auto;
+    }
+
+    .video-wrapper {
+      max-width: 900px;
+      margin: 0 auto 10px;
+      background: transparent;
+      border-radius: 12px;
+      padding: 0;
+      box-shadow: none;
+    }
+
+    .video-content h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .video-content p {
+      color: #666;
+      line-height: 1.6;
+      margin: 0 auto 18px;
+      font-size: 1rem;
+      text-align: center;
+      max-width: 780px;
+    }
+
+    .video-content video {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      background: #000;
+      aspect-ratio: 16 / 9;
+    }
+
+    @media (max-width: 768px) {
+      .featured-video-section {
+        padding: 30px 0 40px;
+      }
+
+      .video-wrapper {
+        padding: 0;
+      }
+
+      .section-title h2 {
+        font-size: 1.6rem;
+      }
+
+      .video-content h3 {
+        font-size: 1.2rem;
+      }
+
+      .video-content p {
+        font-size: 0.95rem;
+      }
+    }
