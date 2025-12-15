@@ -164,7 +164,7 @@
     /* ---------- Misc ---------- */
     .html { scroll-behavior:smooth; }
     /* ---------- Bottom Video Grid ---------- */
-    .video-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:24px; }
+    .video-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:24px; }
     @media (max-width: 900px) { .video-grid { grid-template-columns:1fr; } }
     .video-card { background:#fff; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.08); overflow:hidden; transition:transform .3s, box-shadow .3s; }
     .video-card:hover { transform:translateY(-4px); box-shadow:0 14px 40px rgba(184,134,11,.18); }
@@ -318,7 +318,7 @@
       <div class="section-title">
         <h2>Featured Videos</h2>
         <div class="title-underline"></div>
-        <p style="text-align:center; max-width:800px; margin:10px auto 0; color:#444; font-size:.95rem;">Explore two highlights side-by-side. Click a thumbnail to play.</p>
+        <p style="text-align:center; max-width:800px; margin:10px auto 0; color:#444; font-size:.95rem;">Explore three highlights side-by-side. Click a thumbnail to play.</p>
       </div>
 
       <div class="video-grid">
@@ -343,6 +343,18 @@
           <div class="video-meta">
             <h3>First VR Courtroom in Africa</h3>
             <p>A quick showcase of the VR Courtroom in action.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Dev Game YouTube -->
+        <div class="video-card" data-type="youtube" data-src="https://www.youtube.com/embed/XMYrVcxiUzU?rel=0&modestbranding=1&color=white">
+          <div class="thumb">
+            <img src="https://img.youtube.com/vi/XMYrVcxiUzU/maxresdefault.jpg" alt="Dev Game Thumbnail" />
+            <button class="play-btn" aria-label="Play Dev Game video"><i class="fa-solid fa-play"></i></button>
+          </div>
+          <div class="video-meta">
+            <h3>Dev Game</h3>
+            <p>Explore our interactive development game.</p>
           </div>
         </div>
       </div>
