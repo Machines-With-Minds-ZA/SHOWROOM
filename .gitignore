@@ -26,6 +26,9 @@ dist-ssr
 # dont store config files for tools
 tools/Compress Images/ffmpeg_config.json
 
+# Large ffmpeg binaries (keep local, not needed in repo)
+tools/ffmpeg/
+
 # Large media assets (keep local; use CDN or compress before commit)
 assets/Video/*.mp4
 !assets/Video/ECVR_1080p_WEB.mp4
