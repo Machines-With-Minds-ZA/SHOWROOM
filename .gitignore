@@ -35,3 +35,7 @@ assets/Video/*.mp4
 assets/Video/*.mov
 assets/Video/*.avi
 assets/Video/*.mkv
+
+node_modules/
+.env.env
+node_modules/
