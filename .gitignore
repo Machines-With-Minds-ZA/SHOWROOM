@@ -39,3 +39,5 @@ assets/Video/*.mkv
 node_modules/
 .env.env
 node_modules/
+.env
+node_modules/
