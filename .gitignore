@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.env
 
 # Editor directories and files
 .vscode/*
@@ -36,6 +38,7 @@ assets/Video/*.mov
 assets/Video/*.avi
 assets/Video/*.mkv
 
+node_modules/.env
 node_modules/
-.env.env
+.env
 node_modules/
